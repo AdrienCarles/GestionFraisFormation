@@ -31,7 +31,6 @@ public class Utilisateur {
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DeclarationFrais> declarations = new HashSet<>(); // Déclarations de frais de l'utilisateur
 
-    // Constructeur sans paramètre (obligatoire pour JPA)
     public Utilisateur() {
     }
 
