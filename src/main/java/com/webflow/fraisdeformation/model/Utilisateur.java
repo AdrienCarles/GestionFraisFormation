@@ -3,6 +3,8 @@ package com.webflow.fraisdeformation.model;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Utilisateur {
@@ -15,6 +17,9 @@ public class Utilisateur {
     private String nomUtilisateur; // Nom d'utilisateur unique
 
     @Column(nullable = false)
+    @Size(min = 8, message = "Le mot de passe doit contenir au moins 8 caractères.")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$",
+            message = "Le mot de passe doit contenir au moins une majuscule, une minuscule et un chiffre.")
     private String motDePasse; // Mot de passe de l'utilisateur
 
     @Column(nullable = false, unique = true)
