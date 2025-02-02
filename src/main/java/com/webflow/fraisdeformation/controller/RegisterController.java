@@ -49,10 +49,10 @@ public class RegisterController {
         user.setMotDePasse(passwordEncoder.encode(password));
 
         // Assigner un rôle par défaut
-        Role roleProfesseur = roleRepository.findByName("ROLE_PROFESSEUR")
+        Role roleProfesseur = roleRepository.findByName("PROFESSEUR")
                 .orElseGet(() -> {
                     Role newRole = new Role();
-                    newRole.setName("ROLE_PROFESSEUR");
+                    newRole.setName("PROFESSEUR");
                     return roleRepository.save(newRole);
                 });
 
