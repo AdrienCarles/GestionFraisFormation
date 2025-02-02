@@ -111,4 +111,10 @@ public class Utilisateur {
         this.declarations.remove(declaration);
         declaration.setUtilisateur(null);
     }
+
+    public void ajouterRoleDefaut() {
+        if (roles.isEmpty()) {
+            this.roles.add(new Role("ROLE_PROFESSEUR"));
+        }
+    }
 }

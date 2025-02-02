@@ -1,0 +1,13 @@
+<form action="declaration-flow?execution={{ flowExecutionKey }}" method="post">
+    <label>Transport :</label>
+    <select name="transport">
+        <option value="train">Train</option>
+        <option value="avion">Avion</option>
+        <option value="vehicule">Véhicule personnel</option>
+    </select>
+
+    <label>Frais :</label>
+    <input type="number" name="fraisTransport" min="0" required>
+
+    <button type="submit" name="_eventId_next">Suivant</button>
+</form>

@@ -1,0 +1,12 @@
+<form action="declaration-flow?execution={{ flowExecutionKey }}" method="post">
+    <h3>Vérification de la Déclaration</h3>
+
+    <p><strong>Date :</strong> [[${declaration.dateCreation}]]</p>
+    <p><strong>Lieu :</strong> [[${declaration.formation.lieu}]]</p>
+    <p><strong>Transport :</strong> [[${declaration.transport}]]</p>
+    <p><strong>Frais Transport :</strong> [[${declaration.fraisTransport}]] €</p>
+    <p><strong>Restauration :</strong> [[${declaration.restauration}]]</p>
+    <p><strong>Coordonnées Bancaires :</strong> IBAN : [[${declaration.iban}]]</p>
+
+    <button type="submit" name="_eventId_submit">Soumettre</button>
+</form>

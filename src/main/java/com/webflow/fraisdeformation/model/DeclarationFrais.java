@@ -14,6 +14,8 @@ public class DeclarationFrais {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Identifiant unique de la déclaration
 
+    private double montantTotal;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @NotNull(message = "L'utilisateur est obligatoire")
@@ -132,5 +134,9 @@ public class DeclarationFrais {
     @Override
     public int hashCode() {
         return Objects.hash(id, utilisateur, formation, status, dateCreation);
+    }
+
+    public void calculerMontantTotal() {
+        this.montantTotal = frais.stream().mapToDouble(Frais::getMontant).sum();
     }
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <!-- Début du flow -->
+    <view-state id="start" view="declaration/declaration-form">
+        <transition on="next" to="formation"/>
+    </view-state>
+
+    <!-- Étape 1 : Détails de la formation -->
+    <view-state id="formation" view="declaration/formation">
+        <transition on="next" to="transport"/>
+        <transition on="back" to="start"/>
+    </view-state>
+
+    <!-- Étape 2 : Transport -->
+    <view-state id="transport" view="declaration/transport">
+        <transition on="next" to="hebergement"/>
+        <transition on="back" to="formation"/>
+    </view-state>
+
+    <!-- Étape 3 : Hébergement -->
+    <view-state id="hebergement" view="declaration/hebergement">
+        <transition on="next" to="restauration"/>
+        <transition on="back" to="transport"/>
+    </view-state>
+
+    <!-- Étape 4 : Restauration -->
+    <view-state id="restauration" view="declaration/restauration">
+        <transition on="next" to="coordonneesBancaires"/>
+        <transition on="back" to="hebergement"/>
+    </view-state>
+
+    <!-- Étape 5 : Coordonnées bancaires -->
+    <view-state id="coordonneesBancaires" view="declaration/coordonnees-bancaires">
+        <transition on="next" to="justificatif"/>
+        <transition on="back" to="restauration"/>
+    </view-state>
+
+    <!-- Étape 6 : Justificatif -->
+    <view-state id="justificatif" view="declaration/justificatif">
+        <transition on="next" to="recapitulatif"/>
+        <transition on="back" to="coordonneesBancaires"/>
+    </view-state>
+
+    <!-- Étape 7 : Récapitulatif -->
+    <view-state id="recapitulatif" view="declaration/recapitulatif">
+        <transition on="submit" to="confirmation"/>
+        <transition on="back" to="justificatif"/>
+    </view-state>
+
+    <!-- Étape 8 : Confirmation -->
+    <view-state id="confirmation" view="declaration/confirmation">
+        <transition on="finish" to="end"/>
+    </view-state>
+
+    <end-state id="end"/>
+</flow>

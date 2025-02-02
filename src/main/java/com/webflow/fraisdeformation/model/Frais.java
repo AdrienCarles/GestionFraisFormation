@@ -79,6 +79,10 @@ public class Frais {
         this.justificatif = justificatif;
     }
 
+    public void mettreAJourJustificatif(byte[] nouveauJustificatif) {
+        this.justificatif = nouveauJustificatif;
+    }
+
     // equals et hashCode pour éviter des problèmes lors de l'utilisation dans des collections
     @Override
     public boolean equals(Object o) {
