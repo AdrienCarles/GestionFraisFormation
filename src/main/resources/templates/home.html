@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Accueil - Gestion des Frais de Formation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Frais de Formation</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Connexion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/declaration-form}">Créer une Déclaration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/declarations}">Voir les Déclarations</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1 class="text-center">Bienvenue sur l'application de Gestion des Frais de Formation</h1>
+    <p class="text-center">Cette application vous permet de :</p>
+    <ul class="list-group list-group-flush text-center">
+        <li class="list-group-item">Créer et soumettre des déclarations de frais</li>
+        <li class="list-group-item">Consulter l'historique de vos déclarations</li>
+        <li class="list-group-item">Recevoir des notifications sur l'état de vos déclarations</li>
+    </ul>
+
+    <div class="text-center mt-4">
+        <a class="btn btn-primary" th:href="@{/login}">Se Connecter</a>
+    </div>
+</div>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container text-center">
+        <span class="text-muted">&copy; 2025 Gestion des Frais de Formation</span>
+    </div>
+</footer>
+</body>
+</html>
