@@ -1,7 +1,9 @@
 package com.webflow.fraisdeformation.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
-import java.util.Collections;
+
+import java.util.*;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.webflow.fraisdeformation.model.Utilisateur;
 import com.webflow.fraisdeformation.repository.UtilisateurRepository;
@@ -9,9 +11,6 @@ import com.webflow.fraisdeformation.model.Role;
 import com.webflow.fraisdeformation.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
-
-import java.util.Optional;
 
 @Service
 public class UtilisateurService {
@@ -67,14 +66,20 @@ public class UtilisateurService {
         return utilisateurRepository.save(user);
     }
 
-    public void modifierUtilisateur(Long id, String email, String role) {
+    public void modifierUtilisateur(Long id, String nomUtilisateur, String email, String role) {
+
         Utilisateur utilisateur = utilisateurRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
+
+        utilisateur.setNomUtilisateur(nomUtilisateur);
         utilisateur.setEmail(email);
 
         Role userRole = roleRepository.findByName(role)
                 .orElseThrow(() -> new RuntimeException("Rôle non trouvé : " + role));
-        utilisateur.setRoles(Collections.singleton(userRole));
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(userRole);
+        utilisateur.setRoles(roles);
 
         utilisateurRepository.save(utilisateur);
     }

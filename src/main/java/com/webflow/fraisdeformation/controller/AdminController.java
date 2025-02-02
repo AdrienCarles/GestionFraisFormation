@@ -63,10 +63,11 @@ public class AdminController {
     @PostMapping("/admin/edit-user/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String modifierUtilisateur(@PathVariable Long id,
+                                      @RequestParam String nomUtilisateur,
                                       @RequestParam String email,
                                       @RequestParam String role,
                                       RedirectAttributes redirectAttributes) {
-        utilisateurService.modifierUtilisateur(id, email, role);
+        utilisateurService.modifierUtilisateur(id, nomUtilisateur, email, role);
         redirectAttributes.addFlashAttribute("success", "Utilisateur mis à jour !");
         return "redirect:/admin/users";
     }
