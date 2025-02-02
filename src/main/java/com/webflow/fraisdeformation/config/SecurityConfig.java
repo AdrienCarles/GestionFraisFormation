@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()  // Désactiver CSRF pour simplifier les tests (à activer en production)
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**").permitAll()  // Autoriser l'accès public à la page d'accueil et aux ressources statiques
+                .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**", "/register").permitAll()  // Autoriser l'accès public à la page d'accueil et aux ressources statiques
                 .antMatchers("/h2-console/**").permitAll()  // Autoriser l'accès à la console H2
                 .antMatchers("/api/**").hasAnyRole("PROFESSEUR", "ADMIN")  // Restreindre l'accès aux APIs pour les utilisateurs authentifiés
                 .antMatchers("/admin/**").hasRole("ADMIN")  // Réserver l'accès aux administrateurs uniquement
