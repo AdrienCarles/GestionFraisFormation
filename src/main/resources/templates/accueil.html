@@ -5,22 +5,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Frais de Formation</a>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/login}">Connexion</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/declaration-form}">Créer une Déclaration</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/declarations}">Voir les Déclarations</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+
+<div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container mt-4">
     <h1 class="text-center">Bienvenue sur l'application de Gestion des Frais de Formation</h1>
