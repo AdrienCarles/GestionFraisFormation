@@ -15,7 +15,7 @@
     <p th:text="'Bonjour, ' + ${nomUtilisateur} + ' !'"></p>
 
     <div th:if="${#authorization.expression('hasRole(''PROFESSEUR'')')}">
-        <a class="btn btn-primary" th:href="@{/flows/declaration}">Faire une Déclaration</a>
+        <a class="btn btn-primary" th:href="@{/declaration-flow}">Faire une Déclaration</a>
     </div>
 
     <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">

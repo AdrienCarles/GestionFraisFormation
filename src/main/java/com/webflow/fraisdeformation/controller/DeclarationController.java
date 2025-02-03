@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DeclarationController {
 
     @GetMapping("")
-    public String lancerDeclaration() {
-        return "forward:/flows/declaration-flow.xml";
+    public String startFlow() {
+        return "redirect:/declaration-flow";
     }
 }
