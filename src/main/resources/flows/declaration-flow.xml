@@ -17,38 +17,15 @@
 
     <!-- Étape 2 : Transport -->
     <view-state id="transport" view="declaration/transport">
-        <transition on="next" to="hebergement"/>
+        <transition on="next" to="recapitulatif"/>
         <transition on="back" to="formation"/>
     </view-state>
 
-    <!-- Étape 3 : Hébergement -->
-    <view-state id="hebergement" view="declaration/hebergement">
-        <transition on="next" to="restauration"/>
-        <transition on="back" to="transport"/>
-    </view-state>
-
-    <!-- Étape 4 : Restauration -->
-    <view-state id="restauration" view="declaration/restauration">
-        <transition on="next" to="coordonneesBancaires"/>
-        <transition on="back" to="hebergement"/>
-    </view-state>
-
-    <!-- Étape 5 : Coordonnées bancaires -->
-    <view-state id="coordonneesBancaires" view="declaration/coordonnees-bancaires">
-        <transition on="next" to="justificatif"/>
-        <transition on="back" to="restauration"/>
-    </view-state>
-
-    <!-- Étape 6 : Justificatif -->
-    <view-state id="justificatif" view="declaration/justificatif">
-        <transition on="next" to="recapitulatif"/>
-        <transition on="back" to="coordonneesBancaires"/>
-    </view-state>
 
     <!-- Étape 7 : Récapitulatif -->
     <view-state id="recapitulatif" view="declaration/recapitulatif">
         <transition on="submit" to="confirmation"/>
-        <transition on="back" to="justificatif"/>
+        <transition on="back" to="transport"/>
     </view-state>
 
     <!-- Étape 8 : Confirmation -->

@@ -10,6 +10,6 @@ public class DeclarationController {
 
     @GetMapping("")
     public String lancerDeclaration() {
-        return "redirect:/declaration-flow";
+        return "forward:/flows/declaration-flow.xml";
     }
 }
