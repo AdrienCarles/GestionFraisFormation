@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**").permitAll()  // Autoriser l'accès public à la page d'accueil et aux ressources statiques
                 .antMatchers("/h2-console/**").permitAll()  // Autoriser l'accès à la console H2
-                .antMatchers("/api/**").hasAnyRole("PROFESSEUR", "ADMIN")  // Restreindre l'accès aux APIs pour les utilisateurs authentifiés
+                .antMatchers("/api/**").hasAnyRole("ROLE_PROFESSEUR", "ROLE_ADMIN")  // Restreindre l'accès aux APIs pour les utilisateurs authentifiés
                 .antMatchers("/admin/**").hasRole("ADMIN")  // Réserver l'accès aux administrateurs uniquement
                 .anyRequest().authenticated()  // Authentification requise pour les autres routes
                 .and()

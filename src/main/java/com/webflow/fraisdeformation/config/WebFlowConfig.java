@@ -13,13 +13,11 @@ import java.util.Collections;
 
 @Configuration
 public class WebFlowConfig extends AbstractFlowConfiguration {
-
-    // Définissez l'emplacement de vos fichiers de flow (ex. dans src/main/resources/flows)
     @Bean
     public FlowDefinitionRegistry flowRegistry() {
         return getFlowDefinitionRegistryBuilder()
-                .setBasePath("classpath:/flows")
-                .addFlowLocationPattern("declaration-flow.xml")
+                .setBasePath("classpath:/flows/")
+                .addFlowLocationPattern("*.xml")
                 .build();
     }
 
