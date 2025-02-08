@@ -10,6 +10,6 @@ public class DeclarationController {
 
     @GetMapping("")
     public String startFlow() {
-        return "redirect:/declaration-flow";
+        return "redirect:/flows/declaration-flow";
     }
 }

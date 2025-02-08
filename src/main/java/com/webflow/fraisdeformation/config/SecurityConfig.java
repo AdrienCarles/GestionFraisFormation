@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()  // Désactiver CSRF pour simplifier les tests (à activer en production)
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**").permitAll()  // Autoriser l'accès public à la page d'accueil et aux ressources statiques
+                .antMatchers("/declaration-flow/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()  // Autoriser l'accès à la console H2
                 .antMatchers("/api/**").hasAnyRole("ROLE_PROFESSEUR", "ROLE_ADMIN")  // Restreindre l'accès aux APIs pour les utilisateurs authentifiés
                 .antMatchers("/admin/**").hasRole("ADMIN")  // Réserver l'accès aux administrateurs uniquement
