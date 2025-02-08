@@ -34,4 +34,7 @@
     </view-state>
 
     <end-state id="end"/>
+    <global-transitions>
+        <transition on-exception="java.lang.Exception" to="start"/>
+    </global-transitions>
 </flow>
