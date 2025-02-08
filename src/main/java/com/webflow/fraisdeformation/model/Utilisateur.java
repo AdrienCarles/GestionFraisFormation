@@ -25,13 +25,8 @@ public class Utilisateur {
     @Column(nullable = false, unique = true)
     private String email; // Adresse e-mail de l'utilisateur
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "utilisateur_roles", // Table intermédiaire pour la relation ManyToMany
-            joinColumns = @JoinColumn(name = "utilisateur_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>(); // Les rôles attribués à l'utilisateur
+    @Column(nullable = false)
+    private int role;
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DeclarationFrais> declarations = new HashSet<>(); // Déclarations de frais de l'utilisateur
@@ -75,16 +70,16 @@ public class Utilisateur {
         return email;
     }
 
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
     public Set<DeclarationFrais> getDeclarations() {
@@ -93,11 +88,6 @@ public class Utilisateur {
 
     public void setDeclarations(Set<DeclarationFrais> declarations) {
         this.declarations = declarations;
-    }
-
-    // Méthode pour ajouter un rôle
-    public void ajouterRole(Role role) {
-        this.roles.add(role);
     }
 
     // Méthode pour ajouter une déclaration de frais
@@ -110,11 +100,5 @@ public class Utilisateur {
     public void supprimerDeclaration(DeclarationFrais declaration) {
         this.declarations.remove(declaration);
         declaration.setUtilisateur(null);
-    }
-
-    public void ajouterRoleDefaut() {
-        if (roles.isEmpty()) {
-            this.roles.add(new Role("ROLE_PROFESSEUR"));
-        }
     }
 }

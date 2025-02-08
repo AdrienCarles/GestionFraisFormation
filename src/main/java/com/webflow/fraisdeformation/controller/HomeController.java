@@ -13,6 +13,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String afficherAccueil(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+
         if (userDetails != null) {
             model.addAttribute("nomUtilisateur", userDetails.getUsername());
             model.addAttribute("roles", userDetails.getAuthorities());
@@ -20,6 +21,8 @@ public class HomeController {
             model.addAttribute("nomUtilisateur", "Invité");
             model.addAttribute("roles", List.of());
         }
+        System.out.println("Rôles utilisateur : " + userDetails.getAuthorities());
+
         return "home";
     }
 }

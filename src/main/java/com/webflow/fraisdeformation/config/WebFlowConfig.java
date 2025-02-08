@@ -41,7 +41,7 @@ public class WebFlowConfig extends AbstractFlowConfiguration {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         // ATTENTION : Mettre à false si problèmes de compatibilité
-        templateEngine.setEnableSpringELCompiler(false);
+        templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
     }
     @Bean

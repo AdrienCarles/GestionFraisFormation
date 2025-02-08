@@ -33,12 +33,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             Utilisateur user = utilisateurRepository.findByEmail(email)
                     .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé avec l'email : " + email));
 
-            List<SimpleGrantedAuthority> authorities = user.getRoles().stream()
-                    .map(role -> new SimpleGrantedAuthority(role.getName()))
-                    .collect(Collectors.toList());
+            SimpleGrantedAuthority authority = new SimpleGrantedAuthority(getRoleName(user.getRole()));
 
-            return new User(user.getEmail(), user.getMotDePasse(), authorities);
+            return new User(user.getEmail(), user.getMotDePasse(), List.of(authority));
         };
+    }
+
+    private String getRoleName(int role) {
+        switch (role) {
+            case 1: return "ROLE_PROFESSEUR";
+            case 2: return "ROLE_ADMIN";
+            default: return "ROLE_USER"; // Rôle par défaut
+        }
     }
 
     @Override
@@ -49,8 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**").permitAll()
                 .antMatchers("/declaration-flow/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/api/**").hasAnyRole("PROFESSEUR", "ADMIN")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/**").hasAnyAuthority("ROLE_PROFESSEUR", "ROLE_ADMIN")
+                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .headers().frameOptions().sameOrigin()

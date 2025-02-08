@@ -5,31 +5,31 @@
         http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
     <!-- Début du flow -->
-    <view-state id="start" view="declaration/declaration-form">
+    <view-state id="start" view="flows/declaration/declaration-form">
         <transition on="next" to="formation"/>
     </view-state>
 
     <!-- Étape 1 : Détails de la formation -->
-    <view-state id="formation" view="declaration/formation">
+    <view-state id="formation" view="flows/declaration/formation">
         <transition on="next" to="transport"/>
         <transition on="back" to="start"/>
     </view-state>
 
     <!-- Étape 2 : Transport -->
-    <view-state id="transport" view="declaration/transport">
+    <view-state id="transport" view="flows/declaration/transport">
         <transition on="next" to="recapitulatif"/>
         <transition on="back" to="formation"/>
     </view-state>
 
 
     <!-- Étape 7 : Récapitulatif -->
-    <view-state id="recapitulatif" view="declaration/recapitulatif">
+    <view-state id="recapitulatif" view="flows/declaration/recapitulatif">
         <transition on="submit" to="confirmation"/>
         <transition on="back" to="transport"/>
     </view-state>
 
     <!-- Étape 8 : Confirmation -->
-    <view-state id="confirmation" view="declaration/confirmation">
+    <view-state id="confirmation" view="flows/declaration/confirmation">
         <transition on="finish" to="end"/>
     </view-state>
 

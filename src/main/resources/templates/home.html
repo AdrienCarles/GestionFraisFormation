@@ -12,7 +12,7 @@
 <!-- Contenu de la page -->
 <div class="container mt-4 text-center">
     <h1>Bienvenue sur la plateforme de gestion des frais de formation</h1>
-    <p th:text="'Bonjour, ' + ${nomUtilisateur} + ' !'"></p>
+    <p th:text="'Bonjour, ' + (${nomUtilisateur} ?: 'Invité') + ' !'"></p>
 
     <div th:if="${#authorization.expression('hasRole(''PROFESSEUR'')')}">
         <a class="btn btn-primary" th:href="@{/declaration-flow}">Faire une Déclaration</a>
