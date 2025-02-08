@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Utilisation de l'algorithme BCrypt pour chiffrer les mots de passe
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -41,23 +41,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()  // Désactiver CSRF pour simplifier les tests (à activer en production)
+        http
+                .csrf().disable()  // Désactiver CSRF pour des tests uniquement
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**").permitAll()  // Autoriser l'accès public à la page d'accueil et aux ressources statiques
+                .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**").permitAll()
                 .antMatchers("/declaration-flow/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()  // Autoriser l'accès à la console H2
-                .antMatchers("/api/**").hasAnyRole("ROLE_PROFESSEUR", "ROLE_ADMIN")  // Restreindre l'accès aux APIs pour les utilisateurs authentifiés
-                .antMatchers("/admin/**").hasRole("ADMIN")  // Réserver l'accès aux administrateurs uniquement
-                .anyRequest().authenticated()  // Authentification requise pour les autres routes
+                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/api/**").hasAnyRole("PROFESSEUR", "ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
                 .and()
-                .headers().frameOptions().sameOrigin()  // Permet l'affichage de la console H2 dans un iframe
+                .headers().frameOptions().sameOrigin()
                 .and()
-                .formLogin().loginPage("/login").permitAll()  // Page de connexion accessible à tous
-                .defaultSuccessUrl("/home", true)  // Redirection après connexion
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/home", true)
                 .and()
-                .logout().logoutSuccessUrl("/").permitAll();  // Redirection après déconnexion
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/home").permitAll();
     }
 }
